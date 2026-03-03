@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My Gear — the tools and equipment behind Synaptical's music and content." />
+  <title>My Gear — Synaptical</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <script src="/components/nav.js"    defer></script>
+  <script src="/components/footer.js" defer></script>
+</head>
+<body>
+
+  <site-nav></site-nav>
+
+  <main>
+    <div class="container">
+
+      <header class="page-header animate-fade-up">
+        <span class="section-label">My Gear</span>
+        <h1>Tools of the craft.</h1>
+        <p style="margin-top:1rem; font-size:1.05rem;">
+          What I use to make music and create content.
+          <!--
+            AFFILIATE TIP: Once you join affiliate programs (Amazon Associates,
+            Sweetwater, Plugin Boutique, etc.), replace the href="#" on each
+            gear item with your affiliate link. You earn a commission on
+            purchases made through your links at no extra cost to the buyer.
+          -->
+        </p>
+      </header>
+
+      <!--
+        HOW TO ADD A GEAR ITEM:
+        Duplicate a <div class="gear-item"> block within the relevant section.
+        Update the name, description, and href. Set href="#" if you don't have
+        a link yet — you can add affiliate links later.
+
+        The category sections (Music Production, Recording, etc.) are just
+        <section> blocks with a heading. Add, remove, or rename them freely.
+      -->
+
+      <div class="gear-layout animate-fade-up delay-1">
+
+        <!-- ── Music Production ─────────────────────────── -->
+        <section class="gear-section">
+          <h2 class="gear-section-title">Music Production</h2>
+
+          <div class="gear-list">
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">DAW</span>
+                <h3 class="gear-item-name">Software / DAW Name</h3>
+                <p class="gear-item-desc">What you use it for, what you like about it.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">Plugins</span>
+                <h3 class="gear-item-name">Plugin / VST Name</h3>
+                <p class="gear-item-desc">Brief note about how or why you use it.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">MIDI Controller</span>
+                <h3 class="gear-item-name">Controller Name</h3>
+                <p class="gear-item-desc">Brief note.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ── Recording & Audio ────────────────────────── -->
+        <section class="gear-section">
+          <h2 class="gear-section-title">Recording &amp; Audio</h2>
+
+          <div class="gear-list">
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">Audio Interface</span>
+                <h3 class="gear-item-name">Interface Name</h3>
+                <p class="gear-item-desc">Brief note.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">Headphones / Monitors</span>
+                <h3 class="gear-item-name">Headphone / Monitor Name</h3>
+                <p class="gear-item-desc">Brief note.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ── Content Creation ─────────────────────────── -->
+        <section class="gear-section">
+          <h2 class="gear-section-title">Content Creation</h2>
+
+          <div class="gear-list">
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">Microphone</span>
+                <h3 class="gear-item-name">Microphone Name</h3>
+                <p class="gear-item-desc">Brief note.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">Camera / Webcam</span>
+                <h3 class="gear-item-name">Camera Name</h3>
+                <p class="gear-item-desc">Brief note.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+            <div class="gear-item card">
+              <div class="gear-item-info">
+                <span class="gear-item-category">Software</span>
+                <h3 class="gear-item-name">Streaming / Editing Software</h3>
+                <p class="gear-item-desc">Brief note.</p>
+              </div>
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                 class="btn btn-outline gear-item-btn">View</a>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+
+  <style>
+    .gear-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+      max-width: 860px;
+    }
+
+    .gear-section-title {
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gear-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .gear-item {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.1rem 1.4rem;
+    }
+
+    .gear-item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .gear-item-category {
+      font-family: var(--font-display);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--purple-bright);
+    }
+
+    .gear-item-name {
+      color: #fff;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .gear-item-desc {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    .gear-item-btn {
+      flex-shrink: 0;
+      font-size: 0.72rem;
+      padding: 0.45rem 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .gear-item {
+        flex-wrap: wrap;
+      }
+      .gear-item-btn {
+        align-self: flex-start;
+      }
+    }
+  </style>
+
+</body>
+</html>
