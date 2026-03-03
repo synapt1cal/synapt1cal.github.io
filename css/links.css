@@ -1,0 +1,111 @@
+/* ============================================================
+   SYNAPTICAL — Links Page Styles  (css/links.css)
+   ============================================================ */
+
+.links-section {
+  margin-bottom: 4rem;
+}
+
+.links-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.links-section-icon {
+  font-size: 1.4rem;
+}
+
+.links-section-header h2 {
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+/* ── Link Cards Grid ────────────────────────────────────────── */
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.85rem;
+}
+
+/* ── Link Card ──────────────────────────────────────────────── */
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+              transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.link-card:hover {
+  background: var(--bg-raised);
+  transform: translateX(4px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  color: inherit;  /* prevent the global a:hover from overriding child colors */
+}
+
+/* Accent color variants — left border */
+.link-card--purple { border-left-color: var(--purple); }
+.link-card--purple:hover { border-left-color: var(--purple-bright); box-shadow: -2px 0 16px var(--purple-glow), 0 4px 24px rgba(0,0,0,0.3); }
+
+.link-card--blue   { border-left-color: #3b82f6; }
+.link-card--blue:hover { border-left-color: #93c5fd; }
+
+.link-card--green  { border-left-color: #22c55e; }
+.link-card--green:hover { border-left-color: #86efac; }
+
+.link-card--red    { border-left-color: #ef4444; }
+.link-card--red:hover { border-left-color: #fca5a5; }
+
+/* ── Card Interior ──────────────────────────────────────────── */
+.link-card-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  width: 2rem;
+  text-align: center;
+}
+
+.link-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0; /* prevent overflow */
+}
+
+.link-card-platform {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.link-card-handle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link-card-arrow {
+  font-size: 1rem;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.link-card:hover .link-card-arrow {
+  color: var(--purple-bright);
+  transform: translate(2px, -2px);
+}
