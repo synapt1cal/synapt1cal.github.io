@@ -1,24 +1,23 @@
 /* ============================================================
    SYNAPTICAL — <site-nav> Web Component
-   
    Usage: Add <site-nav></site-nav> at the top of any page body.
    The "active" link is detected automatically from the URL.
    ============================================================ */
 
 class SiteNav extends HTMLElement {
   connectedCallback() {
-    // Detect which page we're on for the active link state
     const path = window.location.pathname;
 
     const links = [
-      { href: '/',             label: 'Home'    },
-      { href: '/music.html',   label: 'Music'   },
-      { href: '/writing.html', label: 'Writing' },
-      { href: '/about.html',   label: 'About'   },
+      { href: '/',             label: 'Home'     },
+      { href: '/links.html',   label: 'Links'    },
+      { href: '/writing.html', label: 'Writings' },
+      { href: '/about.html',   label: 'About Me' },
+      { href: '/gear.html',    label: 'My Gear'  },
+      { href: '/contact.html', label: 'Contact'  },
     ];
 
     const navLinks = links.map(link => {
-      // Mark as active if the path matches exactly, or starts with href for sub-pages
       const isActive = (link.href === '/')
         ? (path === '/' || path === '/index.html')
         : path.startsWith(link.href.replace('.html', ''));
@@ -39,7 +38,6 @@ class SiteNav extends HTMLElement {
             ${navLinks}
           </div>
 
-          <!-- Mobile hamburger -->
           <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
             <span></span><span></span><span></span>
           </button>
@@ -48,7 +46,6 @@ class SiteNav extends HTMLElement {
       </nav>
     `;
 
-    // ── Mobile toggle logic ────────────────────────────────
     const toggle = this.querySelector('#nav-toggle');
     const menu   = this.querySelector('#nav-links');
 
@@ -58,7 +55,6 @@ class SiteNav extends HTMLElement {
       toggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Close menu when a link is clicked (on mobile)
     menu.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('nav-links--open');
@@ -67,7 +63,6 @@ class SiteNav extends HTMLElement {
       });
     });
 
-    // ── Scroll shadow ──────────────────────────────────────
     const nav = this.querySelector('.nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('nav--scrolled', window.scrollY > 20);
