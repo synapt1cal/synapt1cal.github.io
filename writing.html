@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Creative writing by Synaptical — fiction, prose, and more." />
+  <title>Writing — Synaptical</title>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <script src="/components/nav.js"    defer></script>
+  <script src="/components/footer.js" defer></script>
+</head>
+<body>
+
+  <site-nav></site-nav>
+
+  <main>
+    <div class="container">
+
+      <header class="page-header animate-fade-up">
+        <span class="section-label">Writing</span>
+        <h1>Words in the dark.</h1>
+        <p style="margin-top: 1rem; font-size: 1.05rem;">
+          Short fiction, prose experiments, and fragments.
+        </p>
+      </header>
+
+      <!-- Writing pieces — add one card per piece. -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 740px;"
+           class="animate-fade-up delay-1">
+
+        <!-- Repeat this block for each piece. -->
+        <article class="card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="color: #fff; font-size: 1.05rem;">Piece Title</h3>
+            <span style="font-size: 0.78rem; color: var(--text-dim); font-family: var(--font-display); letter-spacing: 0.05em;">
+              Short Fiction &middot; Month Year
+            </span>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.8;">
+            A short excerpt or description of the piece. Two or three sentences that pull the
+            reader in without giving too much away.
+          </p>
+          <!--
+            Link options:
+            - To a separate HTML page: href="/writing/piece-name.html"
+            - To an external site (Medium, Substack, etc.): href="https://..."
+          -->
+          <a href="#" class="btn btn-outline" style="align-self: flex-start; font-size: 0.75rem; padding: 0.55rem 1.2rem;">
+            Read
+          </a>
+        </article>
+
+        <article class="card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+            <h3 style="color: #fff; font-size: 1.05rem;">Piece Title</h3>
+            <span style="font-size: 0.78rem; color: var(--text-dim); font-family: var(--font-display); letter-spacing: 0.05em;">
+              Prose &middot; Month Year
+            </span>
+          </div>
+          <p style="font-size: 0.95rem; line-height: 1.8;">
+            A short excerpt or description of the piece.
+          </p>
+          <a href="#" class="btn btn-outline" style="align-self: flex-start; font-size: 0.75rem; padding: 0.55rem 1.2rem;">
+            Read
+          </a>
+        </article>
+
+      </div>
+
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+
+</body>
+</html>
