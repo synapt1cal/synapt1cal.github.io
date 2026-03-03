@@ -29,14 +29,14 @@ class SiteNav extends HTMLElement {
       <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner container">
 
+          <div class="nav-links" id="nav-links" role="menubar">
+            ${navLinks}
+          </div>
+          
           <a href="/" class="nav-brand" aria-label="Synaptical home">
             <span class="nav-brand-text">Synaptical</span>
             <span class="nav-brand-dot" aria-hidden="true"></span>
           </a>
-
-          <div class="nav-links" id="nav-links" role="menubar">
-            ${navLinks}
-          </div>
 
           <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
             <span></span><span></span><span></span>
