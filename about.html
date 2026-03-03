@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="About Synaptical — musician, content creator, and creative writer." />
-  <title>About — Synaptical</title>
+  <title>About Me — Synaptical</title>
 
   <link rel="stylesheet" href="/css/style.css" />
   <link rel="stylesheet" href="/css/components.css" />
@@ -19,31 +19,86 @@
     <div class="container">
 
       <header class="page-header animate-fade-up">
-        <span class="section-label">About</span>
+        <span class="section-label">About Me</span>
         <h1>The signal<br />behind the name.</h1>
       </header>
 
-      <div style="max-width: 680px;" class="animate-fade-up delay-1">
-        <p style="font-size: 1.1rem; line-height: 1.9; margin-bottom: 1.5rem;">
-          <!--
-            Add your bio here. Write naturally — this is your space.
-            A few paragraphs work well. Talk about where you're from,
-            what drives your creative work, and what you're building toward.
-          -->
-          Synaptical is the creative persona of Joshua Grimm — a musician, content creator,
-          and writer exploring the intersections of sound, story, and imagination.
-        </p>
-        <p style="font-size: 1.05rem; line-height: 1.9; margin-bottom: 2.5rem;">
-          Based in [your location]. Currently working on [current project].
-        </p>
+      <div class="about-layout animate-fade-up delay-1">
 
-        <a href="/music.html" class="btn btn-primary">Explore My Music</a>
+        <div class="about-body">
+          <!--
+            Write your bio here. A few paragraphs works well.
+            Think about: who you are, what drives your work, where you're headed.
+            Write in first person and keep it personal — this is your space.
+          -->
+          <p>
+            Hey — I'm Synaptical. [Write your intro here. Who are you,
+            where are you from, what do you make?]
+          </p>
+
+          <p>
+            [Second paragraph — talk about your music, your influences,
+            what you're working on, or what the name means to you.]
+          </p>
+
+          <p>
+            [Optional third paragraph — content creation side, writing, or
+            anything else that rounds out the picture.]
+          </p>
+
+          <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+            <a href="/links.html"   class="btn btn-primary">My Links</a>
+            <a href="/contact.html" class="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+
+        <!--
+          OPTIONAL: Uncomment and fill in the "fast facts" sidebar if you want it.
+          Delete the whole <aside> block if you'd rather keep the page simple.
+        -->
+        <!--
+        <aside class="about-sidebar">
+          <div class="card" style="font-size:.9rem;">
+            <h3 style="color:#fff;font-size:.85rem;margin-bottom:1.25rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--font-display);">Quick Facts</h3>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem;">
+              <li><span style="color:var(--text-dim);margin-right:.5rem;">📍</span> Based in [Location]</li>
+              <li><span style="color:var(--text-dim);margin-right:.5rem;">🎵</span> [Primary genre / style]</li>
+              <li><span style="color:var(--text-dim);margin-right:.5rem;">🛠️</span> [Main DAW or tool]</li>
+              <li><span style="color:var(--text-dim);margin-right:.5rem;">✍️</span> [Writing style / genre]</li>
+            </ul>
+          </div>
+        </aside>
+        -->
+
       </div>
 
     </div>
   </main>
 
   <site-footer></site-footer>
+
+  <style>
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      max-width: 760px;
+    }
+
+    .about-body p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      margin-bottom: 1.4rem;
+      max-width: 65ch;
+    }
+
+    @media (min-width: 768px) {
+      .about-layout {
+        grid-template-columns: 1fr 280px;
+        max-width: 960px;
+      }
+    }
+  </style>
 
 </body>
 </html>
