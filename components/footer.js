@@ -11,10 +11,10 @@ class SiteFooter extends HTMLElement {
 
     // ── Update these with your real links ─────────────────
     const socials = [
-      { label: 'YouTube',   href: '#' },
-      { label: 'SoundCloud', href: '#' },
-      { label: 'Instagram', href: '#' },
-      { label: 'X / Twitter', href: '#' },
+      { label: 'YouTube',   href: 'https://www.youtube.com/@synapt1cal' },
+      { label: 'SoundCloud', href: 'https://soundcloud.com/synapt1cal' },
+      { label: 'Instagram', href: 'https://www.instagram.com/synapticalofficial/' },
+      { label: 'X / Twitter', href: 'https://x.com/synapt1cal' },
     ];
 
     const socialLinks = socials.map(s =>
