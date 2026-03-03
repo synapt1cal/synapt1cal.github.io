@@ -1,0 +1,806 @@
+/* ============================================================
+   SYNAPTICAL — Writing System Styles  (css/writing.css)
+   Covers: writing index cards, reading layout, fiction hub,
+           chapter sidebar, progress bar, blog post components.
+   ============================================================ */
+
+/* ── Reading Progress Bar ───────────────────────────────────── */
+/*
+   A thin bar at the top of the viewport that fills as the reader
+   scrolls. It's driven by JS in each reading-experience template.
+*/
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--purple), var(--purple-bright));
+  z-index: 2000;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--purple);
+}
+
+/* ── Writing Index Cards (writing.html) ─────────────────────── */
+.writing-index {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 800px;
+}
+
+.writing-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-decoration: none;
+  padding: 1.6rem 1.75rem;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease),
+              transform 0.25s var(--ease);
+}
+
+.writing-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 32px var(--purple-glow);
+  transform: translateX(4px);
+  color: inherit;
+}
+
+.writing-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.writing-tag {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple-bright);
+  background: var(--purple-glow);
+  padding: 0.18rem 0.6rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Neutral tag variant for type labels (Short Story, Essay, etc.) */
+.writing-tag--type {
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border);
+}
+
+.writing-meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.writing-read-time {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+}
+
+.writing-series-badge {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+
+.writing-card-title {
+  color: #fff;
+  font-size: 1.15rem;
+  margin: 0;
+  transition: color 0.2s var(--ease);
+}
+
+.writing-card:hover .writing-card-title {
+  color: var(--purple-bright);
+}
+
+.writing-card-excerpt {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin: 0;
+  max-width: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Reading Layout (shared by all reading templates) ───────── */
+/*
+   The reading column is intentionally narrower than the site's
+   normal --max-width. Research shows ~65–75 characters per line
+   is the sweet spot for readability.
+*/
+.reading-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* When a sidebar is present (fiction chapters only) */
+.reading-layout--with-sidebar {
+  grid-template-columns: 260px 1fr;
+  align-items: start;
+  gap: 0;
+}
+
+/* The actual text column */
+.reading-body {
+  min-width: 0; /* prevent overflow in grid */
+  padding: 3rem 0 5rem;
+}
+
+/* With sidebar: add left padding so text isn't flush with it */
+.reading-layout--with-sidebar .reading-body {
+  padding-left: 3rem;
+  border-left: 1px solid var(--border);
+}
+
+/* ── Reading Typography ──────────────────────────────────────── */
+/*
+   These styles apply to the content inside .prose — the actual
+   written content area. Scope them under .prose so they don't
+   bleed out to nav, sidebar, etc.
+*/
+.reading-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.reading-header h1 {
+  color: #fff;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 1rem;
+}
+
+.reading-header-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.reading-chapter-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--purple-bright);
+}
+
+.reading-story-link {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.reading-story-link:hover {
+  color: var(--purple-bright);
+}
+
+.prose {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--text);
+  max-width: 68ch;
+}
+
+/* Paragraphs */
+.prose p {
+  margin-bottom: 1.6em;
+  max-width: none;
+  color: inherit;
+}
+
+/* Scene break — use <hr class="scene-break"> between scenes */
+.prose .scene-break {
+  border: none;
+  text-align: center;
+  margin: 2.5em 0;
+  color: var(--text-dim);
+}
+
+.prose .scene-break::before {
+  content: '· · ·';
+  letter-spacing: 0.4em;
+  font-size: 1rem;
+}
+
+/* Chapter drop cap (optional — add class="drop-cap" to first <p>) */
+.prose .drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-size: 3.6em;
+  font-weight: 800;
+  line-height: 0.75;
+  float: left;
+  margin-right: 0.08em;
+  margin-top: 0.08em;
+  color: var(--purple-bright);
+}
+
+/* ── Blog-specific prose elements ───────────────────────────── */
+
+/* Pull quote — for emphasizing a line mid-essay */
+.prose .pull-quote {
+  border-left: 3px solid var(--purple);
+  margin: 2em 0;
+  padding: 0.75em 1.5em;
+  background: var(--bg-surface);
+  border-radius: 0 6px 6px 0;
+}
+
+.prose .pull-quote p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Section header inside a post */
+.prose h2 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 2.5em 0 0.75em;
+  padding-top: 1em;
+  border-top: 1px solid var(--border);
+}
+
+.prose h3 {
+  font-size: 1.1rem;
+  color: var(--text);
+  margin: 2em 0 0.6em;
+}
+
+/* Media embed container — for YouTube, SoundCloud, images */
+.prose .embed {
+  margin: 2.5em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.prose .embed iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.prose .embed-caption {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+/* Inline image */
+.prose .inline-image {
+  margin: 2em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.prose .inline-image img {
+  width: 100%;
+  height: auto;
+}
+
+.prose .inline-image figcaption {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+/* ── Chapter Navigation (prev / next) ───────────────────────── */
+.chapter-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  max-width: 68ch;
+}
+
+.chapter-nav-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.chapter-nav-btn:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-raised);
+  color: inherit;
+}
+
+.chapter-nav-btn--prev { align-items: flex-start; }
+.chapter-nav-btn--next { align-items: flex-end;   text-align: right; }
+
+.chapter-nav-direction {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.chapter-nav-title {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: color 0.2s var(--ease);
+}
+
+.chapter-nav-btn:hover .chapter-nav-title {
+  color: var(--purple-bright);
+}
+
+/* Empty slot when there's no prev or next */
+.chapter-nav-empty {
+  /* intentionally blank — holds grid space */
+}
+
+/* ── Fiction Sidebar (chapter pages) ────────────────────────── */
+.fiction-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 1.5rem);
+  max-height: calc(100vh - var(--nav-height) - 3rem);
+  overflow-y: auto;
+  padding: 2rem 1.5rem 2rem 0;
+
+  /* Thin scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.fiction-sidebar::-webkit-scrollbar       { width: 4px; }
+.fiction-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.fiction-sidebar-title {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+}
+
+/* Part heading in the sidebar */
+.toc-part {
+  margin-bottom: 0.25rem;
+}
+
+.toc-part-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.5rem 0 0.35rem;
+  display: block;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.toc-part-label:hover {
+  color: var(--text);
+}
+
+.toc-part-toggle {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  transition: transform 0.2s var(--ease);
+}
+
+.toc-part[open] .toc-part-toggle {
+  transform: rotate(180deg);
+}
+
+.toc-part summary {
+  list-style: none;
+}
+
+.toc-part summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chapter links in the sidebar */
+.toc-chapters {
+  list-style: none;
+  padding-left: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-left: 1px solid var(--border);
+}
+
+.toc-chapter-link {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  padding: 0.3rem 0.75rem;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  line-height: 1.4;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.toc-chapter-link:hover {
+  color: var(--text);
+  border-left-color: var(--border-hover);
+}
+
+/* Current chapter highlighted */
+.toc-chapter-link--active {
+  color: var(--purple-bright);
+  border-left-color: var(--purple-bright);
+  font-weight: 500;
+}
+
+/* Mobile sidebar — hidden by default, toggled by a button */
+.sidebar-toggle {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.sidebar-toggle:hover {
+  border-color: var(--border-hover);
+  color: var(--text);
+}
+
+.sidebar-toggle-icon {
+  font-size: 0.9rem;
+}
+
+/* ── Fiction Hub Page ───────────────────────────────────────── */
+.hub-header {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3.5rem;
+  max-width: 700px;
+}
+
+.hub-header h1 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.hub-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.hub-synopsis {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 60ch;
+}
+
+.hub-start-btn {
+  margin-top: 1.75rem;
+}
+
+/* Parts list on the hub page */
+.hub-parts {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 700px;
+}
+
+.hub-part-label {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.2rem;
+  display: block;
+}
+
+.hub-part-title {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.hub-chapter-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hub-chapter-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.hub-chapter-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex: 1;
+  padding: 0.65rem 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease),
+              transform 0.2s var(--ease);
+}
+
+.hub-chapter-link:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-raised);
+  transform: translateX(4px);
+  color: inherit;
+}
+
+.hub-chapter-num {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--purple-bright);
+  flex-shrink: 0;
+  min-width: 2rem;
+}
+
+.hub-chapter-title {
+  font-size: 0.92rem;
+  color: var(--text);
+  flex: 1;
+  transition: color 0.2s var(--ease);
+}
+
+.hub-chapter-link:hover .hub-chapter-title {
+  color: #fff;
+}
+
+.hub-chapter-words {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-family: var(--font-display);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .reading-layout--with-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .fiction-sidebar {
+    display: none;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0 0 1.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .fiction-sidebar.sidebar-open {
+    display: block;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .reading-layout--with-sidebar .reading-body {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .chapter-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .chapter-nav-btn--next {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .prose {
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================
+   GOOGLE DOCS HTML NEUTRALIZER
+   Append this entire file to the bottom of css/writing.css
+   ============================================================
+
+   When you paste body content from a Google Docs HTML export
+   into a .prose div, Google's inline styles (font-family,
+   font-size, color, line-height, margin...) override your site's
+   typography. These rules strip them back out so your .prose
+   styles take over cleanly.
+
+   YOU DON'T TOUCH THIS PER-PIECE — it applies globally to
+   everything inside any .prose div.
+   ============================================================ */
+
+/* ── Reset Google's inline typography on all descendants ────── */
+.prose *,
+.prose p,
+.prose span,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose li {
+  font-family: var(--font-body)    !important;
+  color:            inherit        !important;
+  font-size:        inherit        !important;
+  margin-top:       0              !important;
+  margin-bottom:    0              !important;
+  line-height:      inherit        !important;
+  background-color: transparent   !important;
+  text-decoration:  none          !important;
+  letter-spacing:   normal        !important;
+}
+
+/* ── Re-apply paragraph spacing (since we zeroed margins) ───── */
+/*
+   Google's <p> tags stack with margin. We zeroed that above,
+   so now we put spacing back using adjacent sibling selectors.
+   This works regardless of whatever class names Google generated.
+*/
+.prose p + p,
+.prose p + h2,
+.prose p + h3,
+.prose p + hr {
+  margin-top: 1.6em !important;
+}
+
+.prose h2 + p,
+.prose h3 + p {
+  margin-top: 0.75em !important;
+}
+
+/* ── Restore bold and italic ────────────────────────────────── */
+/*
+   Google marks bold with <b>, <strong>, or span[style*=font-weight].
+   The blanket font-size:inherit above doesn't kill weight, but
+   we pin it explicitly as a safety net.
+*/
+.prose b,
+.prose strong,
+.prose span[style*="font-weight:700"],
+.prose span[style*="font-weight: 700"],
+.prose span[style*="font-weight:bold"] {
+  font-weight: 700 !important;
+}
+
+.prose i,
+.prose em,
+.prose span[style*="font-style:italic"],
+.prose span[style*="font-style: italic"] {
+  font-style: italic !important;
+  font-family: var(--font-body) !important;
+}
+
+/* ── Restore links ──────────────────────────────────────────── */
+.prose a {
+  color: var(--purple-bright) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* ── Google's outer wrapper div ─────────────────────────────── */
+/*
+   The exported <body> often has one wrapping <div> as its first
+   child. `display: contents` makes it invisible to layout — it
+   becomes a transparent pass-through.
+*/
+.prose > div {
+  display: contents;
+}
+
+/* ── Restore your own special elements ─────────────────────── */
+
+/* Scene break · · · */
+.prose .scene-break {
+  border:           none        !important;
+  background:       transparent !important;
+  margin:           2.5em 0     !important;
+  text-align:       center;
+}
+
+/* Pull quote */
+.prose .pull-quote {
+  background:   var(--bg-surface)         !important;
+  border-left:  3px solid var(--purple)   !important;
+  margin:       2em 0                     !important;
+  padding:      0.75em 1.5em             !important;
+  border-radius: 0 6px 6px 0;
+}
+
+.prose .pull-quote p {
+  font-family: var(--font-display) !important;
+  font-size:   1.15rem             !important;
+  font-weight: 500                 !important;
+  color:       var(--text)         !important;
+  line-height: 1.6                 !important;
+  font-style:  italic              !important;
+  margin:      0                   !important;
+}
+
+/* Drop cap */
+.prose .drop-cap::first-letter {
+  font-family: var(--font-display)    !important;
+  font-size:   3.6em                  !important;
+  font-weight: 800                    !important;
+  color:       var(--purple-bright)   !important;
+  line-height: 0.75;
+  float:       left;
+  margin-right: 0.08em;
+  margin-top:   0.08em;
+}

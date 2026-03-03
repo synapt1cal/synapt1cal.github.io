@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+  ════════════════════════════════════════════════════════════════
+  FICTION HUB — /writing/your-story/index.html
+  ════════════════════════════════════════════════════════════════
+
+  This is the "landing page" for a multi-part story.
+  It shows the synopsis, genre tags, and a full table of contents
+  broken into Parts, each containing its chapters.
+
+  HOW TO SET THIS UP:
+  1. Create a folder inside /writing/ named after your story
+     (e.g. /writing/hollow-signal/).
+  2. Save this file as index.html inside that folder.
+  3. Create one chapter file per chapter (use fiction-chapter.html
+     as your template) inside the same folder.
+
+  FILE NAMING CONVENTION (keep it consistent):
+    Part 1, Ch. 1 → p1-ch1.html
+    Part 1, Ch. 2 → p1-ch2.html
+    Part 2, Ch. 1 → p2-ch1.html
+    ...etc.
+
+  UPDATING THIS PAGE:
+  - Fill in the story title, tags, synopsis below.
+  - Duplicate the <details class="hub-part"> block for each Part.
+  - Inside each Part, duplicate <li> items for each chapter.
+  - Update href, chapter number, title, and word count per chapter.
+  ════════════════════════════════════════════════════════════════
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Update this description when you know your story's premise -->
+  <meta name="description" content="Story Title by Synaptical — a [genre] story." />
+  <title>Story Title — Synaptical</title>
+
+  <!--
+    NOTE ON PATHS:
+    Because this file lives one level deeper (/writing/your-story/),
+    all paths need an extra ../ to get back to the root.
+    E.g. /css/style.css becomes ../../css/style.css
+  -->
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+  <link rel="stylesheet" href="../../css/writing.css" />
+  <script src="../../components/nav.js"    defer></script>
+  <script src="../../components/footer.js" defer></script>
+</head>
+<body>
+
+  <!-- Progress bar element — not used on the hub page, but included for consistency -->
+  <div class="progress-bar" id="progress-bar" style="display:none;"></div>
+
+  <site-nav></site-nav>
+
+  <main style="padding-top: var(--nav-height);">
+    <div class="container">
+
+      <!-- ── Story Header ──────────────────────────────────── -->
+      <header class="hub-header animate-fade-up">
+
+        <!-- Breadcrumb back to the index -->
+        <a href="/writing.html" class="reading-story-link" style="display:inline-block; margin-bottom:1.25rem;">
+          ← All Writings
+        </a>
+
+        <!--
+          Genre tags — add or remove as needed.
+          Keep to 2–3 tags max for readability.
+        -->
+        <div class="hub-header-meta">
+          <span class="writing-tag">Dark Fantasy</span>
+          <span class="writing-tag">Action</span>
+          <span class="writing-tag writing-tag--type">Fanfiction</span>
+          <span class="writing-meta-sep"></span>
+          <!-- This total read-time is computed from all chapter word counts below -->
+          <span class="writing-read-time" id="hub-total-time"></span>
+        </div>
+
+        <!-- Story title -->
+        <h1>Jujutsu Kaisen: Rewired</h1>
+
+        <!--
+          Synopsis — 2–4 sentences. Give the premise and tone.
+          Avoid spoilers beyond the setup.
+        -->
+        <p class="hub-synopsis">
+          Ever since I've started watching Jujutsu Kaisen, I couldn't help the urge to create a fanfiction for it. And after finding out about how it all ended, I want to take it into my own hands and refine the story while also adding my own creative twists.
+        </p>
+
+        <!-- Links to Chapter 1 of Part 1 — update the href -->
+        <a href="prologue.html" class="btn btn-primary hub-start-btn">
+          Start Reading →
+        </a>
+
+      </header>
+
+      <!-- ── Table of Contents ─────────────────────────────── -->
+      <!--
+        Each <details class="hub-part"> is one Part.
+        Parts are open by default (the "open" attribute).
+        Remove "open" from later parts if you want them collapsed.
+
+        To add a new Part: duplicate the entire <details> block.
+        To add a new Chapter: duplicate an <li class="hub-chapter-item"> block.
+
+        data-words on each <li> is that chapter's word count.
+        The JS at the bottom of the page totals them up.
+      -->
+      <div class="hub-parts animate-fade-up delay-1">
+
+        <details class="hub-part" open>
+          <summary style="list-style:none; cursor:pointer;">
+            <span class="hub-part-label">Part 0</span>
+            <h2 class="hub-part-title">The Prologue</h2>
+          </summary>
+
+          <ul class="hub-chapter-list">
+
+            <!--
+              One <li> per chapter.
+              href  — relative path to the chapter file
+              data-words — word count for this chapter
+            -->
+            <li class="hub-chapter-item" data-words="2309">
+              <a href="prologue.html" class="hub-chapter-link">
+                <span class="hub-chapter-num">Prologue</span>
+                <span class="hub-chapter-title">Silence before the Storm</span>
+                <span class="hub-chapter-words" data-chapter-time></span>
+              </a>
+            </li>
+
+          </ul>
+        </details>
+
+        <!-- Add more Parts here by duplicating a <details class="hub-part"> block -->
+
+      </div>
+
+    </div>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script>
+    /*
+      Calculates per-chapter and total read times from data-words attributes.
+      220 wpm — comfortable literary reading pace.
+    */
+    const WPM = 220;
+    let totalWords = 0;
+
+    document.querySelectorAll('.hub-chapter-item[data-words]').forEach(item => {
+      const words   = parseInt(item.dataset.words, 10);
+      const display = item.querySelector('[data-chapter-time]');
+      if (isNaN(words) || words === 0) return;
+
+      totalWords += words;
+      const mins = Math.ceil(words / WPM);
+      if (display) display.textContent = `${mins} min`;
+    });
+
+    const totalDisplay = document.getElementById('hub-total-time');
+    if (totalDisplay && totalWords > 0) {
+      const totalMins = Math.ceil(totalWords / WPM);
+      totalDisplay.textContent = totalMins >= 60
+        ? `~${Math.round(totalMins / 60)}h read`
+        : `${totalMins} min read`;
+    }
+  </script>
+
+</body>
+</html>
