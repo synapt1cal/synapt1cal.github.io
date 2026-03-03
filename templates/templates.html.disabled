@@ -107,3 +107,41 @@
     or argument — what will the reader have thought about by the end?
     </p>
 </a>
+
+<!--
+  ════════════════════════════════════════════════════════════════
+  FICTION CHAPTER — /writing/your-story/p1-ch1.html
+  ════════════════════════════════════════════════════════════════
+
+  PASTING FROM GOOGLE DOCS — WORKFLOW (takes ~1 minute per chapter):
+
+  1. In Google Docs: File → Download → Web Page (.html, zipped)
+  2. Unzip the downloaded file. Open the .html file in a plain
+     text editor (Notepad, TextEdit, VS Code in github.dev, etc.)
+  3. Find the opening <body> tag and the closing </body> tag.
+     SELECT AND DELETE everything BEFORE <body> — that is, the
+     entire <html>, <head>, and <style> block. Google's styles
+     are exactly what we're replacing with our own.
+  4. SELECT AND DELETE the <body> and </body> tags themselves
+     (just the tags, not the content between them).
+  5. You now have just the inner content. SELECT ALL and COPY.
+  6. In this file, find the PASTE YOUR GOOGLE DOCS CONTENT HERE
+     comment inside <div class="prose"> and paste there.
+  7. Delete the placeholder comment line after pasting.
+  8. Add data-words="NNNN" to <body> with this chapter's word count.
+     (Get it from Tools → Word count in Google Docs before exporting.)
+  9. Save and commit.
+
+  OPTIONAL MANUAL TOUCHES AFTER PASTING:
+  • Add class="drop-cap" to the first <p> for a decorative first letter
+  • Add <hr class="scene-break"> between scenes (if Google Docs used
+    a line of asterisks or dashes for scene breaks, find/replace them)
+  • Add <blockquote class="pull-quote"><p>...</p></blockquote> around
+    any line you want highlighted as a pull quote
+
+  UPDATING STORY CONFIG (bottom of file):
+  • Set currentChapter to this file's name (e.g. "p1-ch2.html")
+  • Keep the parts/chapters list complete and in order — this drives
+    both the sidebar TOC and the prev/next navigation
+  ════════════════════════════════════════════════════════════════
+-->
